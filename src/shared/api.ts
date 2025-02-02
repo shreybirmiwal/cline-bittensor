@@ -421,12 +421,63 @@ export const mistralModels = {
 	},
 } as const satisfies Record<string, ModelInfo>
 
-
 // Targon
 // https://targon.com/
-export type TargonModelId = keyof typeof deepSeekModels
+//also add 'support comput use etc'
+export type TargonModelId = keyof typeof targonModels
 export const targonDefaultModelId: TargonModelId = "deepseek-ai/DeepSeek-R1-Distill-Llama-70B"
 export const targonModels = {
+	//targon
+	"NousResearch/Meta-Llama-3.1-8B-Instruct": {
+		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		contextWindow: 128_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0, //ALL FREE!
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
+	},
+	"NousResearch/Hermes-3-Llama-3.1-8B": {
+		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		contextWindow: 128_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0, //ALL FREE!
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
+	},
+	"deepseek-ai/deepseek-coder-33b-instruct": {
+		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		contextWindow: 128_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0, //ALL FREE!
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
+	},
+	"nvidia/Llama-3.1-Nemotron-70B-Instruct-HF": {
+		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		contextWindow: 128_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0, //ALL FREE!
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
+	},
+	"EnvyIrys/EnvyIrys_sn111_14": {
+		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		contextWindow: 128_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0, //ALL FREE!
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
+	},
 	"deepseek-ai/DeepSeek-R1-Distill-Llama-70B": {
 		maxTokens: 20_000, // FIXME: i'm not sure about this value
 		contextWindow: 128_000,
@@ -437,4 +488,88 @@ export const targonModels = {
 		cacheWritesPrice: 0,
 		cacheReadsPrice: 0,
 	},
+
+
+
+
+	//akkash
+	"DeepSeek-R1": {
+		maxTokens: 20_000,
+		contextWindow: 128_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0, //ALL FREE!
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
+	},
+	"DeepSeek-R1-Distill-Llama-70B": {
+
+		maxTokens: 20_000,
+		contextWindow: 128_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0, //ALL FREE!
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
+	},
+
+	"DeepSeek-R1-Distill-Qwen-32B": {
+		maxTokens: 20_000,
+		contextWindow: 128_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0, //ALL FREE!
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
+	},
+
+	"Meta-Llama-3-1-405B-Instruct-FP8": {
+		maxTokens: 20_000,
+		contextWindow: 128_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0, //ALL FREE!
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
+	},
+
+	"Meta-Llama-3-2-3B-Instruct": {
+		maxTokens: 20_000,
+		contextWindow: 128_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0, //ALL FREE!
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
+	},
+
+
+	"nvidia-Llama-3-1-Nemotron-70B-Instruct-HF": {
+		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		contextWindow: 128_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0, //ALL FREE!
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
+	},
+
+	"Meta-Llama-3-3-70B-Instruct": {
+		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		contextWindow: 128_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0, //ALL FREE!
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
+	}
+
+
 } as const satisfies Record<string, ModelInfo>

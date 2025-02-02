@@ -15,12 +15,40 @@ export class TargonHandler implements ApiHandler {
         this.client = new OpenAI({
             baseURL: "https://api.targon.com/v1",
             apiKey: "sn4_nsz99yxqenqv1qoqxs7towb43a25",
+
+            // baseURL: "https://chatapi.akash.network/api/v1",
+            // apiKey: "sk-bOEWn0zrEWUWkIgLn4gGoA",
         })
+
+        this.testCompletion()
     }
 
-    async *createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream {
-        const model = this.getModel()
+    private async testCompletion() {
+        try {
+            const model = this.getModel()
+            const stream = await this.client.chat.completions.create({
+                model: model.id,
+                stream: true,
+                messages: [
+                    { role: "system", content: "You are a helpful programming assistant." },
+                    { role: "user", content: "Write a bubble sort implementation in TypeScript with comments explaining how it works" }
+                ],
+                temperature: 0.7,
+                max_tokens: 256,
+                top_p: 0.1,
+                frequency_penalty: 0,
+                presence_penalty: 0
+            });
+            for await (const chunk of stream) {
+                const content = chunk.choices[0]?.delta?.content || "";
+                //process.stdout.write(content);
+            }
+        } catch (error) { console.error('Error:', error); }
+    };
 
+    async * createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream {
+        const model = this.getModel()
+        console.log("STARTING CREATE MESSAGE");
         const isDeepseekReasoner = model.id.includes("deepseek-reasoner")
 
         let openAiMessages: OpenAI.Chat.ChatCompletionMessageParam[] = [
@@ -32,23 +60,33 @@ export class TargonHandler implements ApiHandler {
             openAiMessages = convertToR1Format([{ role: "user", content: systemPrompt }, ...messages])
         }
 
+
         const stream = await this.client.chat.completions.create({
             model: model.id,
             max_completion_tokens: model.info.maxTokens,
-            messages: openAiMessages,
+            messages: [
+                { role: "system", content: "You are a helpful programming assistant." },
+                { role: "user", content: "Write a bubble sort implementation in TypeScript with comments explaining how it works" }
+            ],
             stream: true,
             stream_options: { include_usage: true },
             // Only set temperature for non-reasoner models
             ...(model.id === "deepseek-reasoner" ? {} : { temperature: 0 }),
         })
 
+        let final = ""
         for await (const chunk of stream) {
+            console.log("CHUNK", chunk)
             const delta = chunk.choices[0]?.delta
             if (delta?.content) {
                 yield {
                     type: "text",
                     text: delta.content,
                 }
+                final += delta.content
+                //console.log("DELTA", delta)
+            } else {
+                console.log("NO DELTA")
             }
 
             if ("reasoning_content" in delta && delta.reasoning_content) {
@@ -70,6 +108,8 @@ export class TargonHandler implements ApiHandler {
                 }
             }
         }
+
+        console.log("FINAL", final)
     }
 
     getModel(): { id: TargonModelId; info: ModelInfo } {

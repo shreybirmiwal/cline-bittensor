@@ -31,6 +31,9 @@ import {
 	openRouterDefaultModelInfo,
 	vertexDefaultModelId,
 	vertexModels,
+
+	targonDefaultModelId,
+	targonModels,
 } from "../../../../src/shared/api"
 import { ExtensionMessage } from "../../../../src/shared/ExtensionMessage"
 import { useExtensionState } from "../../context/ExtensionStateContext"
@@ -187,6 +190,8 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 					<VSCodeOption value="vscode-lm">VS Code LM API</VSCodeOption>
 					<VSCodeOption value="lmstudio">LM Studio</VSCodeOption>
 					<VSCodeOption value="ollama">Ollama</VSCodeOption>
+					<VSCodeOption value="targon">Targon (Free!)</VSCodeOption>
+
 				</VSCodeDropdown>
 			</DropdownContainer>
 
@@ -800,6 +805,19 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 				</div>
 			)}
 
+			{selectedProvider === "targon" && (
+				<div>
+					<p
+						style={{
+							fontSize: "12px",
+							marginTop: 3,
+							color: "var(--vscode-descriptionForeground)",
+						}}>
+						Targon (targon.com) is a decentralized AI cloud running on Bittensor that serves opensource large language models for free"
+					</p>
+				</div>
+			)}
+
 			{apiErrorMessage && (
 				<p
 					style={{
@@ -829,6 +847,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 							{selectedProvider === "openai-native" && createDropdown(openAiNativeModels)}
 							{selectedProvider === "deepseek" && createDropdown(deepSeekModels)}
 							{selectedProvider === "mistral" && createDropdown(mistralModels)}
+							{selectedProvider === "targon" && createDropdown(targonModels)}
 						</DropdownContainer>
 
 						<ModelInfoView
@@ -1072,6 +1091,8 @@ export function normalizeApiConfiguration(apiConfiguration?: ApiConfiguration): 
 					supportsImages: false, // VSCode LM API currently doesn't support images
 				},
 			}
+		case "targon":
+			return getProviderData(targonModels, targonDefaultModelId)
 		default:
 			return getProviderData(anthropicModels, anthropicDefaultModelId)
 	}
