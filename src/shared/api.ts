@@ -11,6 +11,7 @@ export type ApiProvider =
 	| "deepseek"
 	| "mistral"
 	| "vscode-lm"
+	| "targon"
 
 export interface ApiHandlerOptions {
 	apiModelId?: string
@@ -417,5 +418,23 @@ export const mistralModels = {
 		supportsPromptCache: false,
 		inputPrice: 0.3,
 		outputPrice: 0.9,
+	},
+} as const satisfies Record<string, ModelInfo>
+
+
+// Targon
+// https://targon.com/
+export type TargonModelId = keyof typeof deepSeekModels
+export const targonDefaultModelId: TargonModelId = "deepseek-ai/DeepSeek-R1-Distill-Llama-70B"
+export const targonModels = {
+	"deepseek-ai/DeepSeek-R1-Distill-Llama-70B": {
+		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		contextWindow: 128_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0, //ALL FREE!
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
 	},
 } as const satisfies Record<string, ModelInfo>
