@@ -31,7 +31,6 @@ import {
 	openRouterDefaultModelInfo,
 	vertexDefaultModelId,
 	vertexModels,
-
 	targonDefaultModelId,
 	targonModels,
 } from "../../../../src/shared/api"
@@ -191,7 +190,6 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 					<VSCodeOption value="lmstudio">LM Studio</VSCodeOption>
 					<VSCodeOption value="ollama">Ollama</VSCodeOption>
 					<VSCodeOption value="targon">Targon (Free!)</VSCodeOption>
-
 				</VSCodeDropdown>
 			</DropdownContainer>
 
@@ -813,7 +811,8 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage, is
 							marginTop: 3,
 							color: "var(--vscode-descriptionForeground)",
 						}}>
-						Targon (targon.com) is a decentralized AI cloud running on Bittensor that serves opensource large language models for free"
+						Targon (targon.com) is a decentralized AI cloud running on Bittensor that serves opensource large language
+						models for free"
 					</p>
 				</div>
 			)}

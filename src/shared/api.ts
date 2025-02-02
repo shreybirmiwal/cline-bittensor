@@ -429,7 +429,7 @@ export const targonDefaultModelId: TargonModelId = "deepseek-ai/DeepSeek-R1-Dist
 export const targonModels = {
 	//targon
 	"NousResearch/Meta-Llama-3.1-8B-Instruct": {
-		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		maxTokens: 4061, // FIXME: i'm not sure about this value
 		contextWindow: 128_000,
 		supportsImages: false,
 		supportsPromptCache: true,
@@ -439,7 +439,7 @@ export const targonModels = {
 		cacheReadsPrice: 0,
 	},
 	"NousResearch/Hermes-3-Llama-3.1-8B": {
-		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		maxTokens: 200, // FIXME: i'm not sure about this value
 		contextWindow: 128_000,
 		supportsImages: false,
 		supportsPromptCache: true,
@@ -449,7 +449,7 @@ export const targonModels = {
 		cacheReadsPrice: 0,
 	},
 	"deepseek-ai/deepseek-coder-33b-instruct": {
-		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		maxTokens: 200, // FIXME: i'm not sure about this value
 		contextWindow: 128_000,
 		supportsImages: false,
 		supportsPromptCache: true,
@@ -459,7 +459,7 @@ export const targonModels = {
 		cacheReadsPrice: 0,
 	},
 	"nvidia/Llama-3.1-Nemotron-70B-Instruct-HF": {
-		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		maxTokens: 200, // FIXME: i'm not sure about this value
 		contextWindow: 128_000,
 		supportsImages: false,
 		supportsPromptCache: true,
@@ -469,7 +469,7 @@ export const targonModels = {
 		cacheReadsPrice: 0,
 	},
 	"EnvyIrys/EnvyIrys_sn111_14": {
-		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		maxTokens: 200, // FIXME: i'm not sure about this value
 		contextWindow: 128_000,
 		supportsImages: false,
 		supportsPromptCache: true,
@@ -479,7 +479,7 @@ export const targonModels = {
 		cacheReadsPrice: 0,
 	},
 	"deepseek-ai/DeepSeek-R1-Distill-Llama-70B": {
-		maxTokens: 20_000, // FIXME: i'm not sure about this value
+		maxTokens: 200, // FIXME: i'm not sure about this value
 		contextWindow: 128_000,
 		supportsImages: false,
 		supportsPromptCache: true,
@@ -488,9 +488,6 @@ export const targonModels = {
 		cacheWritesPrice: 0,
 		cacheReadsPrice: 0,
 	},
-
-
-
 
 	//akkash
 	"DeepSeek-R1": {
@@ -504,7 +501,6 @@ export const targonModels = {
 		cacheReadsPrice: 0,
 	},
 	"DeepSeek-R1-Distill-Llama-70B": {
-
 		maxTokens: 20_000,
 		contextWindow: 128_000,
 		supportsImages: false,
@@ -548,7 +544,6 @@ export const targonModels = {
 		cacheReadsPrice: 0,
 	},
 
-
 	"nvidia-Llama-3-1-Nemotron-70B-Instruct-HF": {
 		maxTokens: 20_000, // FIXME: i'm not sure about this value
 		contextWindow: 128_000,
@@ -569,7 +564,5 @@ export const targonModels = {
 		outputPrice: 0,
 		cacheWritesPrice: 0,
 		cacheReadsPrice: 0,
-	}
-
-
+	},
 } as const satisfies Record<string, ModelInfo>
