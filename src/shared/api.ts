@@ -449,8 +449,8 @@ export const targonModels = {
 		cacheReadsPrice: 0,
 	},
 	"deepseek-ai/deepseek-coder-33b-instruct": {
-		maxTokens: 200, // FIXME: i'm not sure about this value
-		contextWindow: 128_000,
+		maxTokens: 512, // FIXME: i'm not sure about this value
+		contextWindow: 16_000,
 		supportsImages: false,
 		supportsPromptCache: true,
 		inputPrice: 0, //ALL FREE!
@@ -479,8 +479,8 @@ export const targonModels = {
 		cacheReadsPrice: 0,
 	},
 	"deepseek-ai/DeepSeek-R1-Distill-Llama-70B": {
-		maxTokens: 200, // FIXME: i'm not sure about this value
-		contextWindow: 128_000,
+		maxTokens: 8_000, // FIXME: i'm not sure about this value
+		contextWindow: 64_000,
 		supportsImages: false,
 		supportsPromptCache: true,
 		inputPrice: 0, //ALL FREE!
