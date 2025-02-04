@@ -6,6 +6,10 @@ import { convertToOpenAiMessages } from "../transform/openai-format"
 import { ApiStream } from "../transform/stream"
 import { convertToR1Format } from "../transform/r1-format"
 
+import * as fs from "fs"
+import * as path from "path"
+const filePath = path.join(__dirname, "openai_messages_dump.json")
+
 export class TargonHandler implements ApiHandler {
 	private options: ApiHandlerOptions
 	private client: OpenAI
@@ -13,11 +17,11 @@ export class TargonHandler implements ApiHandler {
 	constructor(options: ApiHandlerOptions) {
 		this.options = options
 		this.client = new OpenAI({
-			baseURL: "https://api.targon.com/v1",
-			apiKey: "sn4_nsz99yxqenqv1qoqxs7towb43a25",
+			// baseURL: "https://api.targon.com/v1",
+			// apiKey: "sn4_nsz99yxqenqv1qoqxs7towb43a25",
 
-			// baseURL: "https://chatapi.akash.network/api/v1",
-			// apiKey: "sk-bOEWn0zrEWUWkIgLn4gGoA",
+			baseURL: "https://chatapi.akash.network/api/v1",
+			apiKey: "sk-bOEWn0zrEWUWkIgLn4gGoA",
 		})
 
 		this.testCompletion()
@@ -68,14 +72,14 @@ export class TargonHandler implements ApiHandler {
 		const stream = await this.client.chat.completions.create({
 			model: model.id,
 			max_completion_tokens: model.info.maxTokens,
-			messages: [
-				{ role: "system", content: "You are a helpful programming assistant." },
-				{
-					role: "user",
-					content: "Write a bubble sort implementation in TypeScript with comments explaining how it works",
-				},
-			],
-			//messages: openAiMessages,
+			// messages: [
+			// 	{ role: "system", content: "You are a helpful programming assistant." },
+			// 	{
+			// 		role: "user",
+			// 		content: "Write a bubble sort implementation in TypeScript with comments explaining how it works",
+			// 	},
+			// ],
+			messages: openAiMessages,
 			stream: true,
 			stream_options: { include_usage: true },
 			// Only set temperature for non-reasoner models
