@@ -425,9 +425,20 @@ export const mistralModels = {
 // https://targon.com/
 //also add 'support comput use etc'
 export type TargonModelId = keyof typeof targonModels
-export const targonDefaultModelId: TargonModelId = "deepseek-ai/DeepSeek-R1-Distill-Llama-70B"
+export const targonDefaultModelId: TargonModelId = "deepseek-ai/DeepSeek-R1"
 export const targonModels = {
 	//targon
+
+	"deepseek-ai/DeepSeek-R1": {
+		maxTokens: 8_000,
+		contextWindow: 64_000,
+		supportsImages: false,
+		supportsPromptCache: true,
+		inputPrice: 0,
+		outputPrice: 0,
+		cacheWritesPrice: 0,
+		cacheReadsPrice: 0,
+	},
 	"NousResearch/Meta-Llama-3.1-8B-Instruct": {
 		maxTokens: 4061, // FIXME: i'm not sure about this value
 		contextWindow: 128_000,
